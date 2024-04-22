@@ -5,7 +5,7 @@ import Nav from '../components/navbar';
 import Sign from '../components/buttons/signIn';
 
 import lady from '../assets/lady.png';
-//import next from '../assets/next.png';
+import next from '../assets/next.png';
 
 
 
@@ -22,11 +22,15 @@ function Landing() {
                     <h2 className='pt-4 text-2xl'>
                         LANDING PAGE
                     </h2>
-                    <div className='pt-4 mt-16'>
+                    <NavLink to="/sign" className='pt-4 mt-16'>
                         <Sign />
-                    </div>
+                    </NavLink>
                     <div>
-                        
+                    <img 
+                        src={next} 
+                        alt='' 
+                        className='h-12 mt-16 '
+                    />
                     </div>
                 </div>
                 <div>
@@ -35,6 +39,9 @@ function Landing() {
                         alt='' 
                         className='object-contain h-full w-full d'
                     />
+                </div>
+                <div>
+                   
                 </div>
             </div>
 

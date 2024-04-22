@@ -1,8 +1,12 @@
 import React from "react";
 import Search from "./search";
+import { NavLink } from "react-router-dom";
 
 
 function Nav() {
+    const handleSeacrh = (searchTerm) => {
+        console.log("searching for:", searchTerm);
+    };
     return (
         <div > 
            <div className="flex p-8 bg-lime-600 justify-between">
@@ -11,12 +15,12 @@ function Nav() {
             className="w-6 h- pt-1"
             src="https://icon-library.com/images/white-menu-icon/white-menu-icon-4.jpg" 
             alt="" />
-            <h1 to="/">Home</h1>
-            <h1 to="/about">About</h1>
-            <h1 to="/about">Products</h1>
-            <h1 to="/about">Contacts</h1>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/products">Products</NavLink>
+            <NavLink to="/contacts">Contacts</NavLink>
             </nav>
-            < Search className="flex " />
+            < Search onSearch={handleSeacrh} className="flex " />
             </div>
         </div>
     )
