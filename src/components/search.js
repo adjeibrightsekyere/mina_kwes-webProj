@@ -1,39 +1,40 @@
 import React, { useState } from 'react';
+import { FaSearch } from "react-icons/fa";
 
-function Search({onSearch}){
-    const [search, setSearch] = useState('');
-    
-    const handleInputChange = (event) => {
-        setSearch(event.target.value)
+function Search({setResults}) {
+    const [input, setInput] = useState("")
+    const fetchData = (value) => {
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then((response) => response.json())
+            .then((json) => {
+                const results = json.filter((user) => {
+                    return (
+                        value &&
+                        user &&
+                        user.name &&
+                        user.name.toLowerCase().includes(value)
+                    )
+                })
+                setResults(results);
+            })
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        onSearch(search)
-    };
-
-    return(
+    const handleChange = (value) => {
+        setInput(value);
+        fetchData(value);
+    }
+    return (
         <div>
-            <form onSubmit={handleSubmit} 
-            className='flex  text-xl text-black rounded-full border border-blue-500 shadow-sm shadow-white bg-lime-600'>
-                <input 
-                    type='text'
-                    placeholder='search..'
-                    value={search}
-                    onChange={handleInputChange}
-                    className='flex text-center bg-lime-600'
+            <div className='flex bg-white h-full w-full p-2 items-center  rounded-full'>
+                <FaSearch className='ml-2' />
+                <input
+                    className='bg-transparent border-none h-full w-full pl-2 focus:outline-none'
+                    placeholder='Type to search'
+                    value={input}
+                    onChange={(e) => handleChange(e.target.value)}
                 />
-
-                <button 
-                    className=''
-                    type='submit'>
-                    <img 
-                    className='w-4 ml-2 pr-1'
-                    src='https://www.svgrepo.com/show/7109/search.svg' alt='' />
-                </button>
-            </form>
+            </div>
         </div>
     )
 }
-
 export default Search;

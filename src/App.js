@@ -3,25 +3,28 @@ import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
 import './App.css';
 
 
-import Landing from './pages/landing page';
-import About from './pages/about page';
 import Home from './pages/home page';
+import About from './pages/about page';
+import SignIn from './pages/signIn';
 import Products from './pages/products';
 import Contacts from './pages/contacts';
-import Sign from './components/buttons/signIn';
+import SignUp from './pages/signUp';
+
 
 function App() {
   return (
     <Router>
-    <Routes>
       
-      <Route path="/" element={<Landing />} />
+    <Routes>
+      <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/home" element={<Home />} />
+      
       <Route path="/products" element={<Products />} />
       <Route path="/contacts" element={<Contacts />} />
-      <Route path="/sign" element={<Sign />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path='/signup' element={<SignUp />} />
     </Routes>
+    
     </Router>
   );
 }
